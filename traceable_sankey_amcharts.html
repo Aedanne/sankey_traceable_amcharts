@@ -1,0 +1,301 @@
+<html>
+<head>
+<style>
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+#chartdiv {
+  width: 100%;
+  height: 350px
+
+}
+
+#charttitlediv {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  font-size: 24px;
+  padding-top: 20px;
+  font-weight: bold;
+    
+}
+
+#charttitlesubdiv {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  font-size: 18px;
+  padding-top: 20px;
+  font-weight: bold;
+    
+}
+
+#charttracediv {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+    
+}
+
+#chartheader1div {
+  width: 39%;
+  height: 50px;
+  text-align: left;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-left: 16px;
+  font-weight: bold;
+  margin-left: 40px;
+  margin-right: 70px;   
+}
+
+#chartheader2div {
+  width: 40%;
+  height: 50px;
+  text-align: left;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-left: 25px;
+  font-weight: bold;
+  margin-left: 40px;
+  margin-right: 70px;   
+}
+</style>
+</head>
+<body>
+
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<div id="charttitlediv"><u>Owner-Car Relationship Information Visualization</u></div>
+<div id="charttitlesubdiv">Author: Charisse Hanson&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JS Libraries Used: <a href="https://www.amcharts.com/docs/v4/">https://www.amcharts.com/docs/v4/</a></div>
+<div id="charttracediv">TRACING MODE: 
+    <input type="radio" id="category" name="trace" value="category" checked>
+  <label for="category">By Category</label>    
+  <input type="radio" id="single" name="trace" value="single">
+  <label for="single">By Object</label>
+
+</div>
+<div id="chartheaderdiv">
+  <table width="97%" align="center">
+    <tr>
+      <td colspan="3" id="chartheader1div"><u>Owner Information</u></td>
+      <td id="chartheader2div"><u>Car Information</u></b></td>
+    </tr>  
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>  
+  </table>  
+</div>
+<div id="chartdiv"></div>
+
+<script>
+/**
+ * ---------------------------------------
+ * Documentation is available at:
+ * https://www.amcharts.com/docs/v4/
+ * ---------------------------------------
+ */
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chart = am4core.create("chartdiv", am4charts.SankeyDiagram);
+chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+chart.data = [
+ 
+ //Gender 
+  { from: "Gender:\nFemale", to: "Age:\n21-40", value: 1, id:"Gender-F-21-41-2016-C-H-z1" },
+  { from: "Gender:\nFemale", to: "Age:\n21-40", value: 1, id:"Gender-F-21-61-2018-Se-H-z2" },
+  { from: "Gender:\nFemale", to: "Age:\n41-60", value: 1, id:"Gender-F-41-81-2018-Se-T-z3" },
+  { from: "Gender:\nFemale", to: "Age:\n41-60", value: 1, id:"Gender-F-41-81-2018-Sp-B-z4" },
+  { from: "Gender:\nFemale", to: "Age:\n61+", value: 1, id:"Gender-F-61-61-2016-SUV-H-z5" }, 
+  
+  { from: "Gender:\nMale", to: "Age:\n21-40", value: 1, id:"Gender-M-21-61-2016-SUV-T-z6" },  
+  { from: "Gender:\nMale", to: "Age:\n21-40", value: 1, id:"Gender-M-21-41-2016-C-H-z7" },
+  { from: "Gender:\nMale", to: "Age:\n41-60", value: 1, id:"Gender-M-41-61-2017-Se-B-z8" },
+  { from: "Gender:\nMale", to: "Age:\n61+", value: 1, id:"Gender-M-61-41-2016-SUV-H-z9" },
+  { from: "Gender:\nMale", to: "Age:\n61+", value: 1, id:"Gender-M-61-41-2017-Se-B-z10" },
+
+ //Age  
+  { from: "Age:\n21-40", to: "Income:\n41k-60k", value: 1, id:"Age-F-21-41-2016-C-H-z1" },  
+  { from: "Age:\n21-40", to: "Income:\n61k-80k", value: 1, id:"Age-F-21-61-2018-Se-H-z2" }, 
+  { from: "Age:\n61+", to: "Income:\n61k-80k", value: 1, id:"Age-F-61-61-2016-SUV-H-z5" }, 
+  { from: "Age:\n21-40", to: "Income:\n61k-80k", value: 1, id:"Age-M-21-61-2016-SUV-T-z6" },    
+     
+  { from: "Age:\n21-40", to: "Income:\n41k-60k", value: 1, id:"Age-M-21-41-2016-C-H-z7" },
+
+  { from: "Age:\n41-60", to: "Income:\n81k-100k", value: 1, id:"Age-F-41-81-2018-Se-T-z3" },
+  { from: "Age:\n41-60", to: "Income:\n81k-100k", value: 1, id:"Age-F-41-81-2018-Sp-B-z4" },  
+  { from: "Age:\n41-60", to: "Income:\n61k-80k", value: 1, id:"Age-M-41-61-2017-Se-B-z8" },  
+
+  { from: "Age:\n61+", to: "Income:\n41k-60k", value: 1, id:"Age-M-61-41-2016-SUV-H-z9" },
+  { from: "Age:\n61+", to: "Income:\n41k-60k", value: 1, id:"Age-M-61-41-2017-Se-B-z10" },
+
+ //Income  
+  { from: "Income:\n41k-60k", to: "Car Year:\n2016", value: 1, id:"Income-F-21-41-2016-C-H-z1" },
+  { from: "Income:\n41k-60k", to: "Car Year:\n2016", value: 1, id:"Income-M-21-41-2016-C-H-z7" }, 
+  { from: "Income:\n41k-60k", to: "Car Year:\n2016", value: 1, id:"Income-M-61-41-2016-SUV-H-z9" },
+  { from: "Income:\n41k-60k", to: "Car Year:\n2017", value: 1, id:"Income-M-61-41-2017-Se-B-z10" },
+
+  { from: "Income:\n61k-80k", to: "Car Year:\n2018", value: 1, id:"Income-F-21-61-2018-Se-H-z2" },
+
+  { from: "Income:\n61k-80k", to: "Car Year:\n2016", value: 1, id:"Income-F-61-61-2016-SUV-H-z5" },
+  { from: "Income:\n61k-80k", to: "Car Year:\n2016", value: 1, id:"Income-M-21-61-2016-SUV-T-z6" },
+  { from: "Income:\n61k-80k", to: "Car Year:\n2017", value: 1, id:"Income-M-41-61-2017-Se-B-z8" },
+
+  { from: "Income:\n81k-100k", to: "Car Year:\n2018", value: 1, id:"Income-F-41-81-2018-Se-T-z3" },
+  { from: "Income:\n81k-100k", to: "Car Year:\n2018", value: 1, id:"Income-F-41-81-2018-Sp-B-z4" },
+
+ //Car Year
+  { from: "Car Year:\n2016", to: "Body Style:\nCoupe", value: 1, id:"Year-F-21-41-2016-C-H-z1" },
+  { from: "Car Year:\n2016", to: "Body Style:\nCoupe", value: 1, id:"Year-M-21-41-2016-C-H-z7" },
+  { from: "Car Year:\n2018", to: "Body Style:\nSedan", value: 1, id:"Year-F-21-61-2018-Se-H-z2" },
+  { from: "Car Year:\n2018", to: "Body Style:\nSedan", value: 1, id:"Year-F-41-81-2018-Se-T-z3" },
+  { from: "Car Year:\n2017", to: "Body Style:\nSedan", value: 1, id:"Year-M-61-41-2017-Se-B-z10" },  
+  { from: "Car Year:\n2018", to: "Body Style:\nSports", value: 1, id:"Year-F-41-81-2018-Sp-B-z4" },  
+  { from: "Car Year:\n2016", to: "Body Style:\nSUV", value: 1, id:"Year-M-61-41-2016-SUV-H-z9" }, 
+  { from: "Car Year:\n2016", to: "Body Style:\nSUV", value: 1, id:"Year-F-61-61-2016-SUV-H-z5" },  
+  { from: "Car Year:\n2016", to: "Body Style:\nSUV", value: 1, id:"Year-M-21-61-2016-SUV-T-z6" },
+
+  { from: "Car Year:\n2017", to: "Body Style:\nSedan", value: 1, id:"Year-M-41-61-2017-Se-B-z8" },
+ 
+ //Body Style 
+  { from: "Body Style:\nCoupe", to: "Make:\nHonda", value: 1, id:"Body-F-21-41-2016-C-H-z1" },
+  { from: "Body Style:\nCoupe", to: "Make:\nHonda", value: 1, id:"Body-M-21-41-2016-C-H-z7" },
+
+  { from: "Body Style:\nSedan", to: "Make:\nHonda", value: 1, id:"Body-F-21-61-2018-Se-H-z2" },
+  { from: "Body Style:\nSedan", to: "Make:\nToyota", value: 1, id:"Body-F-41-81-2018-Se-T-z3" },
+  { from: "Body Style:\nSedan", to: "Make:\nBMW", value: 1, id:"Body-M-61-41-2017-Se-B-z10" },
+  { from: "Body Style:\nSedan", to: "Make:\nBMW", value: 1, id:"Body-M-41-61-2017-Se-B-z8" },
+
+  { from: "Body Style:\nSports", to: "Make:\nBMW", value: 1, id:"Body-F-41-81-2018-Sp-B-z4" },
+
+  { from: "Body Style:\nSUV", to: "Make:\nHonda", value: 1, id:"Body-M-61-41-2016-SUV-H-z9" },
+  { from: "Body Style:\nSUV", to: "Make:\nHonda", value: 1, id:"Body-F-61-61-2016-SUV-H-z5" },  
+  { from: "Body Style:\nSUV", to: "Make:\nToyota", value: 1, id:"Body-M-21-61-2016-SUV-T-z6" },
+
+  
+//Make  
+  { from: "Make:\nHonda", to: "Records:\nAll", value: 1, id:"Make-F-21-41-2016-C-H-z1" },
+  { from: "Make:\nHonda", to: "Records:\nAll", value: 1, id:"Make-M-21-41-2016-C-H-z7" },
+  { from: "Make:\nHonda", to: "Records:\nAll", value: 1, id:"Make-F-21-61-2018-Se-H-z2" },
+  { from: "Make:\nHonda", to: "Records:\nAll", value: 1, id:"Make-M-61-41-2016-SUV-H-z9" }, 
+  { from: "Make:\nHonda", to: "Records:\nAll", value: 1, id:"Make-F-61-61-2016-SUV-H-z5" },  
+ 
+  { from: "Make:\nToyota", to: "Records:\nAll", value: 1, id:"Make-F-41-81-2018-Se-T-z3" },
+  { from: "Make:\nToyota", to: "Records:\nAll", value: 1, id:"Make-M-21-61-2016-SUV-T-z6" },
+  
+  { from: "Make:\nBMW", to: "Records:\nAll", value: 1, id:"Make-M-61-41-2017-Se-B-z10" },
+  { from: "Make:\nBMW", to: "Records:\nAll", value: 1, id:"Make-M-41-61-2017-Se-B-z8" },
+  { from: "Make:\nBMW", to: "Records:\nAll", value: 1, id:"Make-F-41-81-2018-Sp-B-z4" },  
+      
+];
+
+
+let hoverState = chart.links.template.states.create("hover");
+hoverState.properties.fillOpacity = 0.40;
+
+chart.dataFields.fromName = "from";
+chart.dataFields.toName = "to";
+chart.dataFields.value = "value";
+
+chart.links.template.propertyFields.id = "id";
+chart.links.template.colorMode = "solid";
+chart.links.template.fill = new am4core.InterfaceColorSet().getFor("alternativeBackground");
+chart.links.template.fillOpacity = 0.1;
+chart.links.template.tooltipText = "";
+
+// highlight all links with the same id beginning
+/*ID values:
+  Pos 0 - Hover Category (Gender, 
+                          Age, 
+                          Income, 
+                          Year, 
+                          Body,
+                          Make)
+  Pos 1 - Gender Category - F, M
+  Pos 2 - Age Category - 21, 41, 61
+  Pos 3 - Income Category - 41, 61, 81
+  Pos 4 - Year Category - 2016, 2017, R2018
+  Pos 5 - Body Category - C, Se, Sp, SUV 
+  Pos 6 - Make - H, T, B
+*/
+
+
+chart.links.template.events.on("over", function(event){
+  let link = event.target;
+  let id0 = link.id.split("-")[0];
+
+ // prompt(link.id);
+  var index = 0;
+  
+   //Check selected tracing mode:
+   var isCategory = document.getElementById('category').checked;
+   //prompt (isCategory);
+   if (!isCategory) {
+     index = 7;
+   } else {
+     switch(id0) {
+       case "Gender":
+         index = 1;
+         break;
+       case "Age":
+         index = 2;
+         break; 
+       case "Income":
+         index = 3;
+         break;
+       case "Year":
+         index = 4;
+         break; 
+       case "Body":
+         index = 5;
+         break;
+       case "Make":
+         index = 6;
+         break; 
+     }
+   }
+     
+  let id = link.id.split("-")[index];  
+  chart.links.each(function(link){
+    if(link.id.split("-")[index] == id){
+      link.isHover = true;
+    }
+  })
+})
+
+chart.links.template.events.on("out", function(event){  
+  chart.links.each(function(link){
+    link.isHover = false;
+  })
+})
+
+// for right-most label to fit
+chart.paddingRight = 75;
+chart.paddingLeft = 40;
+
+
+
+
+// make nodes draggable
+var nodeTemplate = chart.nodes.template;
+nodeTemplate.inert = true;
+nodeTemplate.readerTitle = "Click to show/hide or drag to rearrange";
+nodeTemplate.showSystemTooltip = true;
+nodeTemplate.cursorOverStyle = am4core.MouseCursorStyle.pointer;
+nodeTemplate.width = 20;
+</script>
+
+
+</body>
+</html>
+
